@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+
+  <body>
+    <header>
+      <link rel="stylesheet" href="../styles/hatchways.css" />
+    </header>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+    <script src="../javascript/hatchways.js"></script>
+
+    <script id="sample_template" type="text/html">
+      <div class="card">
+          <img class="avatar" src={{pic}}>
+          <div class="card-content">
+              <div class="card-content-info">
+                  <h4 class="title">{{firstName}} {{lastName}}</h4>
+                  <div class="details">
+                      <p>Email: {{email}}</p>
+                      <p>Company: {{company}}</p>
+                      <p>Skill: {{skill}}</p>
+                      <p>Average: {{average}}%</p>
+                      <div class="grade-list" id="gradeList{{id}}">
+                          <ol class="prefixed">
+                              {{#grades}}
+                               <li class="grade-num"> {{.}}%</li>
+                              {{/grades}}
+                          </ol>
+                      </div>
+                  </div>
+              </div>
+              <button class="card-content-extra" id="cardContentExtra{{id}}" onclick="showGrades({{id}})"><span id="sign{{id}}" class="sign"></span></button>
+          </div>
+      </div>
+    </script>
+
+    <script type="text/javascript">
+      fetch('https://www.hatchways.io/api/assessment/students')
+        .then(response => response.json())
+        .then(data => {
+          let students = data['students'];
+          let template = '';
+          let html = '';
+          let avg = 0;
+          let sum = 0;
+          let grades;
+          for (let i = 0; i < students.length; i++) {
+            template = document.getElementById('sample_template').innerHTML;
+            student = students[i];
+            grades = student['grades'].map(Number);
+            avg = average(grades);
+            student['average'] = avg;
+            html += Mustache.render(template, student);
+          }
+
+          document.getElementById('contentID').innerHTML = html;
+        })
+        .catch(error => console.error(error));
+    </script>
+    <div class="search-bar">
+      <input
+        type="text"
+        id="searchBarName"
+        onkeyup="filterSearchName()"
+        placeholder="Search by name"
+      />
+    </div>
+    <div id="contentID"></div>
+
+    <script></script>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+.html * {
+    margin: 0;
+    padding: 0;
+}
+
+/*Picture*/
+.avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(207, 204, 204);
+    display: inline-block;
+    margin: 20px;
+}
+
+/*Card Layouts*/
+.card {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid rgb(223, 219, 219);
+
+
+}
+
+
+.card-content {
+    display: flex;
+    width : 100%;
+    justify-content: space-between;
+}
+
+.card-content-info {
+    margin-left: 20px;
+}
+
+.card-content-info .title {
+    margin: 10px 0px;
+    font-size: 50px;
+    font-weight: 300;
+    /*use a google font...*/
+}
+
+.card-content-info .details {
+    margin: 5px 20px;
+    color: rgb(146, 145, 145);
+}
+.details p {
+    margin: 3px 0;
+}
+
+/* + sign */
+.card-content .card-content-extra{
+    font-size: 60px;
+    font-weight: 300;
+    opacity: 0.6;
+    margin: 0;
+    height: 60px;
+    width: 60px;
+    border: none;
+    background-color: #fff;
+}
+
+.card-content .sign:after{
+    content: '+'
+}
+
+.card-content .card-content-extra:focus {
+    outline: none;
+}
+
+
+.card-content .card-content-extra:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.card-content .card-content-minus:after{
+    content: '-';
+    font-size: 60px;
+    font-weight: 300;
+    opacity: 0.6;
+    margin: 0;
+    height: 60px;
+    border: none;
+    background-color: #fff;
+}
+
+/*Seach bar*/
+
+
+#searchBarName {
+    margin: 10px;
+    margin-bottom: 2px;
+    border: none;
+    height: 40px;
+    width: 100%;
+    color: rgba(182, 179, 179, 0.753);
+    font-size: 25px;
+    font-weight: 50;
+    
+}
+
+
+#searchBarName:focus {
+    border:none;
+    outline: none;
+}
+
+
+#searchBarName::placeholder {
+    color: rgb(236, 228, 228);
+    font-size: 25px;
+    font-weight: 50;
+}
+
+
+.prefixed {
+    counter-reset: item;
+    list-style-type: none;
+    padding: 0;
+}
+
+.prefixed li:before {
+    content: 'Test ' counter(item, decimal) ': ';
+    counter-increment: item;
+    margin-right: 25px;
+}
+
+.grade-list{
+    display: none;
+}
+
+
